@@ -50,9 +50,8 @@ public class MainActivity extends AppCompatActivity {
                  validarLogin();
             }
         });
-
-
     }
+
     private void validarLogin(){
         logar = ConfiguracaoFirabase.getFirebaseAutenticacao();
         logar.signInWithEmailAndPassword(
