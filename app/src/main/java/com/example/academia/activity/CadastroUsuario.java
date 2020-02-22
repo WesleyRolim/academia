@@ -31,6 +31,8 @@ public class CadastroUsuario extends AppCompatActivity {
     private TextView objetivo;
     private TextView criarSenha;
     private TextView confimarSenha;
+    private TextView idade;
+    private TextView dataNascimento;
 
     private Button voltar;
     private Button cadastrar;
@@ -52,6 +54,8 @@ public class CadastroUsuario extends AppCompatActivity {
         cadastrar = findViewById(R.id.cadastrarButton);
         criarSenha = findViewById(R.id.senhaEditText);
         confimarSenha = findViewById(R.id.confirmaSenhaEditText);
+        idade = findViewById(R.id.idadeEditText);
+        dataNascimento = findViewById(R.id.dataNascimentoEditText);
 
 
         cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +69,8 @@ public class CadastroUsuario extends AppCompatActivity {
                     user.setEmail( email.getText().toString() );
                     user.setTelefone(telefone.getText().toString() );
                     user.setObjetivo( objetivo.getText().toString() );
+                    user.setDataNascimento( dataNascimento.getText().toString() );
+                    user.setIdade( idade.getText().toString() );
                     cadastrarUsuario();
             }
         });

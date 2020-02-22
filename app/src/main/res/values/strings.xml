@@ -21,6 +21,8 @@
     <string name="criar_treino">Criar Treino</string>
     <string name="meu_treino">Meu Treino</string>
     <string name="trocar_senha">Trocar Senha</string>
+    <string name="idade">Idade:</string>
+    <string name="dataNascimento">Data de Nascimento:</string>
 
 
 
