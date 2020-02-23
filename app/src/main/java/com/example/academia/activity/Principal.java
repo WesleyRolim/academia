@@ -2,6 +2,7 @@ package com.example.academia.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -51,7 +52,7 @@ public class Principal extends AppCompatActivity {
         criarExercicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                abrirCadExercicios();
             }
         });
 
@@ -61,5 +62,10 @@ public class Principal extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void abrirCadExercicios(){
+        Intent intent = new Intent(Principal.this, Exercicios.class);
+        startActivity(intent);
     }
 }

@@ -25,6 +25,8 @@
     <string name="dataNascimento">Data de Nascimento:</string>
     <string name="cadastrarExercicio">Cadastrar Exercicio</string>
     <string name="grupoMusculares">Grupo Musculares:</string>
+    <string name="exercicio">Exercicio:</string>
+    <string name="criarExercicio">Criar Exercicio</string>
 
 
     <string-array name="gurpoMusculos">

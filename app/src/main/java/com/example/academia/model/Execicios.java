@@ -5,7 +5,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Execicios {
 
-    private  String idExercicio;
     private String grupoExercicio;
     private String exercicio;
 
@@ -16,15 +15,7 @@ public class Execicios {
 
     public void salvar(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("exercicio").setValue( this );
-    }
-
-    public String getIdExercicio() {
-        return idExercicio;
-    }
-
-    public void setIdExercicio(String idExercicio) {
-        this.idExercicio = idExercicio;
+        databaseReference.child("exercicio").child( getGrupoExercicio() ).setValue( this );
     }
 
     public String getGrupoExercicio() {
