@@ -15,7 +15,7 @@ public class Execicios {
 
     public void salvar(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("exercicio").child( getGrupoExercicio() ).setValue( this );
+        databaseReference.child("exercicio").child( getGrupoExercicio() ).child(getExercicio()).setValue( this );
     }
 
     public String getGrupoExercicio() {
