@@ -18,6 +18,7 @@ public class Exercicios extends AppCompatActivity {
         setContentView(R.layout.activity_exercicios);
 
         musculos = findViewById(R.id.gupoMuscularesSpinner);
+        
 
 
     }
