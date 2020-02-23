@@ -23,8 +23,17 @@
     <string name="trocar_senha">Trocar Senha</string>
     <string name="idade">Idade:</string>
     <string name="dataNascimento">Data de Nascimento:</string>
+    <string name="cadastrarExercicio">Cadastrar Exercicio</string>
+    <string name="grupoMusculares">Grupo Musculares:</string>
 
 
+    <string-array name="gurpoMusculos">
+        <item>Peito</item>
+        <item>Costas</item>
+        <item>Inferior</item>
+        <item>Bicepes</item>
+        <item>Tricepes</item>
+    </string-array>
 
 
 </resources>
