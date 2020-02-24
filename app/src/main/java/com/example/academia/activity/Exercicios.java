@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.academia.R;
+import com.example.academia.helper.Codification;
 import com.example.academia.model.Execicios;
 
 
@@ -21,6 +22,7 @@ public class Exercicios extends AppCompatActivity {
     private TextView exercicio;
     private Button cadastrarExercicio;
     private Execicios execicios;
+    private String codificationData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,28 +44,19 @@ public class Exercicios extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int positon, long l) {
                 execicios.setGrupoExercicio(adapterView.getItemAtPosition(positon).toString());
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-
         });
 
         cadastrarExercicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                execicios.setExercicio(exercicio.getText().toString());
+                execicios.setExercicio( exercicio.getText().toString() );
                 cadastrarExercicio();
-
-
             }
         });
-
-
-
-
     }
 
     public void cadastrarExercicio(){
