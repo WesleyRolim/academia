@@ -29,8 +29,9 @@
     <string name="criarExercicio">Criar Exercicio</string>
     <string name="criarPlanoTreino">Criar Plano de Treino</string>
     <string name="sequencia">Sequência:</string>
-    <string name="repeticao">Repetição</string>
-
+    <string name="repeticao">Repetição:</string>
+    <string name="salvar">Salvar</string>
+    <string name="tipoExercicio">Tipo de Treino:</string>
 
     <string-array name="gurpoMusculos">
         <item>Peito</item>

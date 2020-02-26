@@ -45,6 +45,7 @@ public class Principal extends AppCompatActivity {
         criarTreino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                criarPlanoTreino();
 
             }
         });
@@ -66,6 +67,11 @@ public class Principal extends AppCompatActivity {
 
     public void abrirCadExercicios(){
         Intent intent = new Intent(Principal.this, Exercicios.class);
+        startActivity(intent);
+    }
+
+    public  void criarPlanoTreino(){
+        Intent intent = new Intent(Principal.this, PlanoTreino.class);
         startActivity(intent);
     }
 }

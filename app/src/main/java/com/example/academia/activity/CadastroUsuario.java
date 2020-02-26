@@ -3,6 +3,7 @@ package com.example.academia.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.academia.R;
 import com.example.academia.config.ConfiguracaoFirabase;
+import com.example.academia.helper.Codification;
 import com.example.academia.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -88,10 +90,11 @@ public class CadastroUsuario extends AppCompatActivity {
                     Toast cadastrado = Toast.makeText(getApplicationContext(), "Usuário cadastrado", Toast.LENGTH_SHORT);
                     cadastrado.show();
                     FirebaseUser usuarioFirebase = task.getResult().getUser();
-                    user.setId(usuarioFirebase.getUid());
+                    String idUsuário = Codification.codificacaoData( user.getEmail() );
+                    user.setId( idUsuário );
                     user.salvar();
-                    autenticacao.signOut();
-                    finish();
+                    abrirTelaLogin();
+
                 }else {
                     String msgErro = "";
                     try {
@@ -110,5 +113,11 @@ public class CadastroUsuario extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void abrirTelaLogin(){
+        Intent intent = new Intent(CadastroUsuario.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
