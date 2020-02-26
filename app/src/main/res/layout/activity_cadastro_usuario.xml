@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <EditText
-        android:id="@+id/emailEditText"
+        android:id="@+id/emailTreinoEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -100,7 +100,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/emailTreinoEditText" />
 
     <EditText
         android:id="@+id/telefoneEditText"
@@ -131,7 +131,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <Button
-        android:id="@+id/voltarButton"
+        android:id="@+id/voltarPrincipalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="92dp"
@@ -151,7 +151,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/cadastrae"
-        app:layout_constraintStart_toEndOf="@+id/voltarButton"
+        app:layout_constraintStart_toEndOf="@+id/voltarPrincipalButton"
         app:layout_constraintTop_toBottomOf="@+id/confirmaSenhaEditText" />
 
     <TextView

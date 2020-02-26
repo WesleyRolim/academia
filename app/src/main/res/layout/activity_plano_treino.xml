@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/exercicioSpinner"
+        android:id="@+id/exercicioTreinoSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
     <Spinner
-        android:id="@+id/grupoMusculosSpinner"
+        android:id="@+id/grupoMusculosTreinoSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -84,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
     <EditText
-        android:id="@+id/emailEditText"
+        android:id="@+id/emailTreinoEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -112,7 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <EditText
-        android:id="@+id/sequenciaEditText"
+        android:id="@+id/sequenciaTreinoEditText"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -121,7 +121,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/textView23"
-        app:layout_constraintTop_toBottomOf="@+id/exercicioSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/exercicioTreinoSpinner" />
 
     <TextView
         android:id="@+id/textView24"
@@ -132,11 +132,11 @@
         android:text="@string/repeticao"
         android:textColor="@color/textos"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/sequenciaEditText"
+        app:layout_constraintStart_toEndOf="@+id/sequenciaTreinoEditText"
         app:layout_constraintTop_toTopOf="@+id/textView23" />
 
     <EditText
-        android:id="@+id/repeticaoEditText"
+        android:id="@+id/repeticaoTreinoEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -148,21 +148,20 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView24"
-        app:layout_constraintTop_toBottomOf="@+id/exercicioSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/exercicioTreinoSpinner" />
 
     <Button
         android:id="@+id/salvarButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
         android:text="@string/salvar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipoTreinoEditText" />
+        tools:layout_editor_absoluteY="700dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/voltarPrincipalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -198,5 +197,32 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView25"
-        app:layout_constraintTop_toBottomOf="@+id/repeticaoEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/repeticaoTreinoEditText" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/numeroTreino"
+        android:textColor="@color/textos"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@+id/tipoTreinoEditText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

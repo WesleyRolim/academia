@@ -22,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class CadastroUsuario extends AppCompatActivity {
 
@@ -49,10 +48,10 @@ public class CadastroUsuario extends AppCompatActivity {
 
         nome = findViewById(R.id.nomeEditText);
         cpf = findViewById(R.id.cpfEditText);
-        email = findViewById(R.id.emailEditText);
+        email = findViewById(R.id.emailTreinoEditText);
         telefone = findViewById(R.id.telefoneEditText);
         objetivo = findViewById(R.id.objetivoEditText);
-        voltar = findViewById(R.id.voltarButton);
+        voltar = findViewById(R.id.voltarPrincipalButton);
         cadastrar = findViewById(R.id.cadastrarButton);
         criarSenha = findViewById(R.id.senhaEditText);
         confimarSenha = findViewById(R.id.confirmaSenhaEditText);

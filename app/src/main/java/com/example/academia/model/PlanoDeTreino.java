@@ -1,5 +1,7 @@
 package com.example.academia.model;
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -11,6 +13,7 @@ public class PlanoDeTreino {
     private String sequencia;
     private String repeticao;
     private String tipoTreino;
+    private String numeroExercicio;
 
     public void PlanoDeTreino(){
 
@@ -18,7 +21,7 @@ public class PlanoDeTreino {
 
     public void salvar(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("treino").child( getEmail() ).child( getTipoTreino() ).setValue( this );
+        databaseReference.child("treino").child( getEmail() ).child( getTipoTreino() ).child( getNumeroExercicio()).setValue( this );
     }
 
 
@@ -69,5 +72,13 @@ public class PlanoDeTreino {
 
     public void setTipoTreino(String tipoTreino) {
         this.tipoTreino = tipoTreino;
+    }
+
+    public String getNumeroExercicio() {
+        return numeroExercicio;
+    }
+
+    public void setNumeroExercicio(String numeroExercicio) {
+        this.numeroExercicio = numeroExercicio;
     }
 }
