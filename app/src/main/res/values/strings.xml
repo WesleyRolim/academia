@@ -27,6 +27,9 @@
     <string name="grupoMusculares">Grupo Musculares:</string>
     <string name="exercicio">Exercicio:</string>
     <string name="criarExercicio">Criar Exercicio</string>
+    <string name="criarPlanoTreino">Criar Plano de Treino</string>
+    <string name="sequencia">Sequência:</string>
+    <string name="repeticao">Repetição</string>
 
 
     <string-array name="gurpoMusculos">

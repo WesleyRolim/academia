@@ -21,7 +21,7 @@ public class Usuario {
 
     public void salvar(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("usuario").child( getId() ).setValue( this );
+        databaseReference.child("usuario").child( getEmail() ).setValue( this );
     }
 
     public String getId() {
