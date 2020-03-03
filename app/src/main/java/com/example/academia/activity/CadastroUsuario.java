@@ -3,6 +3,7 @@ package com.example.academia.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.academia.R;
 import com.example.academia.config.ConfiguracaoFirabase;
+import com.example.academia.helper.Codification;
 import com.example.academia.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class CadastroUsuario extends AppCompatActivity {
 
@@ -31,6 +32,8 @@ public class CadastroUsuario extends AppCompatActivity {
     private TextView objetivo;
     private TextView criarSenha;
     private TextView confimarSenha;
+    private TextView idade;
+    private TextView dataNascimento;
 
     private Button voltar;
     private Button cadastrar;
@@ -45,13 +48,15 @@ public class CadastroUsuario extends AppCompatActivity {
 
         nome = findViewById(R.id.nomeEditText);
         cpf = findViewById(R.id.cpfEditText);
-        email = findViewById(R.id.emailEditText);
+        email = findViewById(R.id.emailTreinoEditText);
         telefone = findViewById(R.id.telefoneEditText);
         objetivo = findViewById(R.id.objetivoEditText);
-        voltar = findViewById(R.id.voltarButton);
+        voltar = findViewById(R.id.voltarPrincipalButton);
         cadastrar = findViewById(R.id.cadastrarButton);
         criarSenha = findViewById(R.id.senhaEditText);
         confimarSenha = findViewById(R.id.confirmaSenhaEditText);
+        idade = findViewById(R.id.idadeEditText);
+        dataNascimento = findViewById(R.id.dataNascimentoEditText);
 
 
         cadastrar.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +70,8 @@ public class CadastroUsuario extends AppCompatActivity {
                     user.setEmail( email.getText().toString() );
                     user.setTelefone(telefone.getText().toString() );
                     user.setObjetivo( objetivo.getText().toString() );
+                    user.setDataNascimento( dataNascimento.getText().toString() );
+                    user.setIdade( idade.getText().toString() );
                     cadastrarUsuario();
             }
         });
@@ -82,10 +89,11 @@ public class CadastroUsuario extends AppCompatActivity {
                     Toast cadastrado = Toast.makeText(getApplicationContext(), "Usuário cadastrado", Toast.LENGTH_SHORT);
                     cadastrado.show();
                     FirebaseUser usuarioFirebase = task.getResult().getUser();
-                    user.setId(usuarioFirebase.getUid());
+                    String idUsuário = Codification.codificacaoData( user.getEmail() );
+                    user.setId( idUsuário );
                     user.salvar();
-                    autenticacao.signOut();
-                    finish();
+                    abrirTelaLogin();
+
                 }else {
                     String msgErro = "";
                     try {
@@ -104,5 +112,11 @@ public class CadastroUsuario extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void abrirTelaLogin(){
+        Intent intent = new Intent(CadastroUsuario.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

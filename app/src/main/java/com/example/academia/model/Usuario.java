@@ -8,6 +8,8 @@ public class Usuario {
     private String id;
     private String nome;
     private String email;
+    private String idade;
+    private String dataNascimento;
     private String cpf;
     private String telefone;
     private String objetivo;
@@ -32,6 +34,22 @@ public class Usuario {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getIdade() {
+        return idade;
+    }
+
+    public void setIdade(String idade) {
+        this.idade = idade;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public void setNome(String nome) {
