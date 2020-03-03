@@ -35,6 +35,7 @@
     <string name="numeroTreino">Número do Treino:</string>
     <string name="meuTreino">Meu Treino</string>
     <string name="treino">Treino:</string>
+    <string name="nada"></string>
 
     <string-array name="gurpoMusculos">
         <item>Peito</item>
