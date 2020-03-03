@@ -1,5 +1,6 @@
 package com.example.academia.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,11 +10,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.academia.config.ConfiguracaoFirabase;
 import com.example.academia.helper.Codification;
+import com.example.academia.helper.Preferencias;
 import com.example.academia.model.PlanoDeTreino;
 
 import com.example.academia.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 public class PlanoTreino extends AppCompatActivity {
 
@@ -23,6 +31,8 @@ public class PlanoTreino extends AppCompatActivity {
     private TextView tipoTreino;
     private TextView numeroExercicio;
     private PlanoDeTreino pTreino;
+    private String identificadorUsuario;
+    private DatabaseReference refenreciaDados;
 
     private Spinner exercicio;
     private Spinner grupoMusculares;
@@ -39,6 +49,7 @@ public class PlanoTreino extends AppCompatActivity {
         sequencia = findViewById(R.id.sequenciaTreinoEditText);
         repeticao = findViewById(R.id.repeticaoTreinoEditText);
         tipoTreino = findViewById(R.id.tipoTreinoEditText);
+        numeroExercicio = findViewById(R.id.numeroExercicioEditText);
 
         exercicio = findViewById(R.id.exercicioTreinoSpinner);
         grupoMusculares = findViewById(R.id.grupoMusculosTreinoSpinner);
@@ -51,12 +62,38 @@ public class PlanoTreino extends AppCompatActivity {
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 pTreino = new PlanoDeTreino();
-                pTreino.setEmail( email.getText().toString() );
                 pTreino.setSequencia( sequencia.getText().toString() );
                 pTreino.setExercicio( repeticao.getText().toString() );
                 pTreino.setTipoTreino( tipoTreino.getText().toString() );
-                cadastrarTreino();
+                pTreino.setNumeroExercicio( numeroExercicio.getText().toString() );
+                pTreino.setPersonalTrainig( professorLogado() );
+                pTreino.setEmail( email.getText().toString() );
+
+                identificadorUsuario = Codification.codificacaoData( pTreino.getEmail() );
+                refenreciaDados = ConfiguracaoFirabase.getFirebase().child("usuario").child( identificadorUsuario );
+                Log.i("Professor","Professor"+professorLogado());
+                refenreciaDados.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Log.i("Professor", "Entrou 1");
+                        if (dataSnapshot.getValue() != null){
+                            Log.i("Professor", "Entrou 2");
+                            cadastrarTreino();
+                        }else {
+                            Toast.makeText(PlanoTreino.this,
+                                    "Usuario não tem cadastro",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
 
@@ -77,5 +114,10 @@ public class PlanoTreino extends AppCompatActivity {
     public void voltar(){
         Intent integer = new Intent(PlanoTreino.this, Principal.class);
         startActivity(integer);
+    }
+
+    public String professorLogado(){
+        Preferencias preferencias = new Preferencias(PlanoTreino.this);
+        return preferencias.getIdentificador();
     }
 }

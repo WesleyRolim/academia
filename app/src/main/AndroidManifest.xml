@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.PlanoTreino"></activity>
+        <activity android:name=".model.MeuTreino"></activity>
+        <activity android:name=".activity.PlanoTreino" />
         <activity android:name=".activity.Exercicios" />
         <activity android:name=".activity.Principal" />
         <activity android:name=".activity.CadastroUsuario" />

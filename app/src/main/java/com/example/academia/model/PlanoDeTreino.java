@@ -3,6 +3,7 @@ package com.example.academia.model;
 import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class PlanoDeTreino {
@@ -14,6 +15,7 @@ public class PlanoDeTreino {
     private String repeticao;
     private String tipoTreino;
     private String numeroExercicio;
+    private String personalTrainig;
 
     public void PlanoDeTreino(){
 
@@ -21,10 +23,15 @@ public class PlanoDeTreino {
 
     public void salvar(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("treino").child( getEmail() ).child( getTipoTreino() ).child( getNumeroExercicio()).setValue( this );
+        databaseReference
+                .child("treino").child( getPersonalTrainig() )
+                .child( getEmail() )
+                .child( getTipoTreino() )
+                .child( getNumeroExercicio())
+                .setValue( this );
     }
 
-
+    @Exclude
     public String getEmail() {
         return email;
     }
@@ -65,7 +72,7 @@ public class PlanoDeTreino {
         this.repeticao = repeticao;
     }
 
-
+    @Exclude
     public String getTipoTreino() {
         return tipoTreino;
     }
@@ -73,12 +80,20 @@ public class PlanoDeTreino {
     public void setTipoTreino(String tipoTreino) {
         this.tipoTreino = tipoTreino;
     }
-
+    @Exclude
     public String getNumeroExercicio() {
         return numeroExercicio;
     }
 
     public void setNumeroExercicio(String numeroExercicio) {
         this.numeroExercicio = numeroExercicio;
+    }
+
+    public String getPersonalTrainig() {
+        return personalTrainig;
+    }
+
+    public void setPersonalTrainig(String personalTrainig) {
+        this.personalTrainig = personalTrainig;
     }
 }
