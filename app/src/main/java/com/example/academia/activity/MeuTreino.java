@@ -10,6 +10,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.academia.R;
+import com.example.academia.config.ConfiguracaoFirabase;
+import com.example.academia.model.PlanoDeTreino;
+import com.google.firebase.database.DatabaseReference;
 
 public class MeuTreino extends AppCompatActivity {
 
@@ -18,12 +21,20 @@ public class MeuTreino extends AppCompatActivity {
     String [] sequencia = {"3", "4", "4", "3", "4", "4", "3", "4", "3", "4", "4"};
     String [] repeticao = {"10", "8-12", "15", "10", "10", "8-10", "12-15", "8-10", "12-15", "8-10", "8"};
 
+    private DatabaseReference dadosTreino;
+    private DatabaseReference professor;
+    private PlanoDeTreino pTreino;
+
+
+
     private ListView listaExercicios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meu_treino);
+        pTreino = new PlanoDeTreino();
+
 
         listaExercicios = findViewById(R.id.listaTreino);
         CustonAdapter custonAdapter = new CustonAdapter();

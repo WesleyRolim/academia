@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.academia.config.ConfiguracaoFirabase;
 import com.example.academia.helper.Codification;
 import com.example.academia.helper.Preferencias;
+import com.example.academia.model.AlunoProfessor;
 import com.example.academia.model.PlanoDeTreino;
 
 import com.example.academia.R;
@@ -31,6 +32,7 @@ public class PlanoTreino extends AppCompatActivity {
     private TextView tipoTreino;
     private TextView numeroExercicio;
     private PlanoDeTreino pTreino;
+    private AlunoProfessor aluProfessor;
     private String identificadorUsuario;
     private DatabaseReference refenreciaDados;
 
@@ -64,22 +66,23 @@ public class PlanoTreino extends AppCompatActivity {
             public void onClick(View view) {
 
                 pTreino = new PlanoDeTreino();
+                aluProfessor = new AlunoProfessor();
+                pTreino.setEmail( email.getText().toString() );
                 pTreino.setSequencia( sequencia.getText().toString() );
                 pTreino.setExercicio( repeticao.getText().toString() );
                 pTreino.setTipoTreino( tipoTreino.getText().toString() );
                 pTreino.setNumeroExercicio( numeroExercicio.getText().toString() );
                 pTreino.setPersonalTrainig( professorLogado() );
-                pTreino.setEmail( email.getText().toString() );
+                aluProfessor.setProfessor( professorLogado() );
+
 
                 identificadorUsuario = Codification.codificacaoData( pTreino.getEmail() );
+                aluProfessor.setAluno( identificadorUsuario );
                 refenreciaDados = ConfiguracaoFirabase.getFirebase().child("usuario").child( identificadorUsuario );
-                Log.i("Professor","Professor"+professorLogado());
                 refenreciaDados.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Log.i("Professor", "Entrou 1");
                         if (dataSnapshot.getValue() != null){
-                            Log.i("Professor", "Entrou 2");
                             cadastrarTreino();
                         }else {
                             Toast.makeText(PlanoTreino.this,
@@ -109,6 +112,7 @@ public class PlanoTreino extends AppCompatActivity {
         String idUserEmail = Codification.codificacaoData(pTreino.getEmail());
         pTreino.setEmail(idUserEmail);
         pTreino.salvar();
+        aluProfessor.salvar();
     }
 
     public void voltar(){
