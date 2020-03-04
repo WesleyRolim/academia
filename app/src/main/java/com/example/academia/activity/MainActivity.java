@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
                     Preferencias preferencias = new Preferencias(MainActivity.this);
                     String idUserLogado = Codification.codificacaoData(user.getEmail());
                     preferencias.salvarDados(idUserLogado);
-
-
                     abrirTelaPrincipal();
                     Toast.makeText(MainActivity.this, "Sucesso ao Logar", Toast.LENGTH_SHORT);
                 }else {
