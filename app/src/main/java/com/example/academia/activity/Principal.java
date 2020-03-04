@@ -38,7 +38,7 @@ public class Principal extends AppCompatActivity {
         meusDados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                abriTelaMeusDados();
             }
         });
 
@@ -77,6 +77,11 @@ public class Principal extends AppCompatActivity {
 
     public void abrirMeusTreinos(){
         Intent intent = new Intent(Principal.this, MeuTreino.class);
+        startActivity(intent);
+    }
+
+    public void abriTelaMeusDados(){
+        Intent intent = new Intent(Principal.this, MeusDados.class);
         startActivity(intent);
     }
 }
