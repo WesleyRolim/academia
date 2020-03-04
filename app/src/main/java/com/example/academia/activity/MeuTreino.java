@@ -14,13 +14,17 @@ import android.widget.Toast;
 
 import com.example.academia.R;
 import com.example.academia.config.ConfiguracaoFirabase;
+import com.example.academia.helper.Codification;
 import com.example.academia.helper.Preferencias;
+import com.example.academia.model.AlunoProfessor;
 import com.example.academia.model.PlanoDeTreino;
 import com.example.academia.model.Usuario;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+
+import java.security.PrivateKey;
 
 public class MeuTreino extends AppCompatActivity {
 
@@ -34,6 +38,8 @@ public class MeuTreino extends AppCompatActivity {
     private DatabaseReference professor;
     private PlanoDeTreino pTreino;
     private ListView listaExercicios;
+    private String professorDoAluno;
+    private DatabaseReference treino;
 
 
     @Override
@@ -42,20 +48,36 @@ public class MeuTreino extends AppCompatActivity {
         setContentView(R.layout.activity_meu_treino);
         pTreino = new PlanoDeTreino();
 
-
+        // Pegar o professor do aluno -- Cria um metodo sepadado depois, para deixar melhor intendivel
         professor = ConfiguracaoFirabase.getFirebase().child("relacao").child( usuarioLogado() );
-
         professor.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                
+                AlunoProfessor alProf = dataSnapshot.getValue(AlunoProfessor.class);
+                professorDoAluno = alProf.getProfessor();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
+        // Busca qual o trieno
+        Log.i("Dados: ","Dados: "+usuarioLogado()+" Email: "+Codification.decodificationData(usuarioLogado()));
+        treino = ConfiguracaoFirabase.getFirebase().child("treino").child(professorDoAluno).child(usuarioLogado()).child("A");
+//        treino.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                //PlanoDeTreino plTreino = dataSnapshot.getValue(PlanoDeTreino.class);
+//                Log.i("Dados","Dados: "+dataSnapshot.getValue());
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
         listaExercicios = findViewById(R.id.listaTreino);
         CustonAdapter custonAdapter = new CustonAdapter();

@@ -112,7 +112,10 @@ public class PlanoTreino extends AppCompatActivity {
         String idUserEmail = Codification.codificacaoData(pTreino.getEmail());
         pTreino.setEmail(idUserEmail);
         pTreino.salvar();
+        pTreino.salvarTreino();
+        pTreino.salvarExercicio();
         aluProfessor.salvar();
+
     }
 
     public void voltar(){
