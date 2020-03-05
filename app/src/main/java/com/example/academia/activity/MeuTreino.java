@@ -33,13 +33,14 @@ public class MeuTreino extends AppCompatActivity {
     String [] sequencia = {"3", "4", "4", "3", "4", "4", "3", "4", "3", "4", "4"};
     String [] repeticao = {"10", "8-12", "15", "10", "10", "8-10", "12-15", "8-10", "12-15", "8-10", "8"};
 
+    private DatabaseReference reference = ConfiguracaoFirabase.getFirebase();
     private DatabaseReference dadosTreino;
     private Usuario user;
     private DatabaseReference professor;
     private PlanoDeTreino pTreino;
     private ListView listaExercicios;
-    private String professorDoAluno;
-    private DatabaseReference treino;
+    private String professorDoAluno = "";
+    private DatabaseReference treino = reference.child("treino");
 
 
     @Override
@@ -55,29 +56,31 @@ public class MeuTreino extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 AlunoProfessor alProf = dataSnapshot.getValue(AlunoProfessor.class);
                 professorDoAluno = alProf.getProfessor();
+                Log.i("Dado:", "Prof: "+professorDoAluno);
+
+                // Busca qual o trieno
+                Log.i("Dado: ","Dado: "+professorDoAluno+" Prof: "+Codification.decodificationData(professorDoAluno));
+                Log.i("Dado: ","Dado: "+usuarioLogado()+" aluno: "+Codification.decodificationData(usuarioLogado()));
+                treino = treino.child(professorDoAluno).child(usuarioLogado());
+                treino.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String key = dataSnapshot.getRef().toString();
+                        Log.i("Dado: ", "KEY:" + key);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.i("KEY", "Não foi possivel obter a Key");
+                    }
+                });
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
-        // Busca qual o trieno
-        Log.i("Dados: ","Dados: "+usuarioLogado()+" Email: "+Codification.decodificationData(usuarioLogado()));
-        treino = ConfiguracaoFirabase.getFirebase().child("treino").child(professorDoAluno).child(usuarioLogado()).child("A");
-//        treino.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                //PlanoDeTreino plTreino = dataSnapshot.getValue(PlanoDeTreino.class);
-//                Log.i("Dados","Dados: "+dataSnapshot.getValue());
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
 
         listaExercicios = findViewById(R.id.listaTreino);
         CustonAdapter custonAdapter = new CustonAdapter();
@@ -92,6 +95,7 @@ public class MeuTreino extends AppCompatActivity {
         }
 
         @Override
+
         public Object getItem(int position) {
             return null;
         }
