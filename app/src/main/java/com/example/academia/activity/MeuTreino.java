@@ -24,7 +24,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.security.PrivateKey;
+import java.util.ArrayList;
 
 public class MeuTreino extends AppCompatActivity {
 
@@ -41,6 +43,8 @@ public class MeuTreino extends AppCompatActivity {
     private ListView listaExercicios;
     private String professorDoAluno = "";
     private DatabaseReference treino = reference.child("treino");
+    // variaveis de teste
+    private ArrayList<String> treinos;
 
 
     @Override
@@ -48,6 +52,7 @@ public class MeuTreino extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meu_treino);
         pTreino = new PlanoDeTreino();
+        treinos = new ArrayList<>();
 
         // Pegar o professor do aluno -- Cria um metodo sepadado depois, para deixar melhor intendivel
         professor = ConfiguracaoFirabase.getFirebase().child("relacao").child( usuarioLogado() );
@@ -65,8 +70,12 @@ public class MeuTreino extends AppCompatActivity {
                 treino.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String key = dataSnapshot.getRef().toString();
-                        Log.i("Dado: ", "KEY:" + key);
+                        //String key = dataSnapshot.getValue().toString();
+                        //Log.i("Dado: ", "KEY:" + key);
+                        for (DataSnapshot dados : dataSnapshot.getChildren()){
+                            dados.getValue();
+                            Log.i("Dado: ", "KEY:" + dados.getKey());
+                        }
                     }
 
                     @Override
