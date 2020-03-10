@@ -68,20 +68,24 @@ public class Principal extends AppCompatActivity {
     public void abrirCadExercicios(){
         Intent intent = new Intent(Principal.this, Exercicios.class);
         startActivity(intent);
+        finish();
     }
 
     public  void criarPlanoTreino(){
         Intent intent = new Intent(Principal.this, PlanoTreino.class);
         startActivity(intent);
+        finish();
     }
 
     public void abrirMeusTreinos(){
         Intent intent = new Intent(Principal.this, MeuTreino.class);
         startActivity(intent);
+        finish();
     }
 
     public void abriTelaMeusDados(){
         Intent intent = new Intent(Principal.this, MeusDados.class);
         startActivity(intent);
+        finish();
     }
 }

@@ -3,18 +3,21 @@ package com.example.academia.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.academia.R;
 import com.example.academia.config.ConfiguracaoFirabase;
-import com.example.academia.helper.Codification;
 import com.example.academia.helper.Preferencias;
 import com.example.academia.model.AlunoProfessor;
 import com.example.academia.model.PlanoDeTreino;
@@ -24,8 +27,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
-import java.security.PrivateKey;
 import java.util.ArrayList;
 
 public class MeuTreino extends AppCompatActivity {
@@ -43,17 +44,22 @@ public class MeuTreino extends AppCompatActivity {
     private ListView listaExercicios;
     private String professorDoAluno = "";
     private DatabaseReference treino = reference.child("treino");
+    private Spinner tipoDeTreino;
     // variaveis de teste
-    private ArrayList<String> treinos;
-
+    private ArrayList<String> meusTreinos = new ArrayList<>();
+    ArrayAdapter<CharSequence> adapter= null;
+    private Button voltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meu_treino);
-        pTreino = new PlanoDeTreino();
-        treinos = new ArrayList<>();
+        tipoDeTreino = findViewById(R.id.treinoSpinner);
+        listaExercicios = findViewById(R.id.listaTreino);
+        voltar = findViewById(R.id.btnVoltar);
 
+
+        pTreino = new PlanoDeTreino();
         // Pegar o professor do aluno -- Cria um metodo sepadado depois, para deixar melhor intendivel
         professor = ConfiguracaoFirabase.getFirebase().child("relacao").child( usuarioLogado() );
         professor.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -61,29 +67,27 @@ public class MeuTreino extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 AlunoProfessor alProf = dataSnapshot.getValue(AlunoProfessor.class);
                 professorDoAluno = alProf.getProfessor();
-                Log.i("Dado:", "Prof: "+professorDoAluno);
 
                 // Busca qual o trieno
-                Log.i("Dado: ","Dado: "+professorDoAluno+" Prof: "+Codification.decodificationData(professorDoAluno));
-                Log.i("Dado: ","Dado: "+usuarioLogado()+" aluno: "+Codification.decodificationData(usuarioLogado()));
                 treino = treino.child(professorDoAluno).child(usuarioLogado());
                 treino.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        //String key = dataSnapshot.getValue().toString();
-                        //Log.i("Dado: ", "KEY:" + key);
                         for (DataSnapshot dados : dataSnapshot.getChildren()){
                             dados.getValue();
-                            Log.i("Dado: ", "KEY:" + dados.getKey());
+                            meusTreinos.add(dados.getKey());
                         }
-                    }
+                        adapter = new ArrayAdapter(MeuTreino.this,
+                                android.R.layout.simple_list_item_1,
+                                meusTreinos);
+                        tipoDeTreino.setAdapter(adapter);
 
+                    }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         Log.i("KEY", "Não foi possivel obter a Key");
                     }
                 });
-
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -91,12 +95,36 @@ public class MeuTreino extends AppCompatActivity {
             }
         });
 
-        listaExercicios = findViewById(R.id.listaTreino);
-        CustonAdapter custonAdapter = new CustonAdapter();
-        listaExercicios.setAdapter(custonAdapter);
+
+        tipoDeTreino.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int positon, long l) {
+                Log.i("Dado:","Dado do Spimmer: "+ adapterView.getItemAtPosition(positon));
+                CustonAdapter custonAdapter = new CustonAdapter();
+                String treinoSelecionado = adapterView.getItemAtPosition(positon).toString();
+                if (treinoSelecionado.equals("B")){
+                    listaExercicios.setAdapter(custonAdapter);
+                }else{
+                    listaExercicios.setAdapter(null);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirPrincipal();
+            }
+        });
 
     }
 
+    // Put data inside of ListView
     class CustonAdapter extends BaseAdapter{
         @Override
         public int getCount() {
@@ -133,4 +161,11 @@ public class MeuTreino extends AppCompatActivity {
         Preferencias preferencias = new Preferencias(MeuTreino.this);
         return preferencias.getIdentificador();
     }
+
+    public void abrirPrincipal (){
+        Intent intent = new Intent(MeuTreino.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     public void abrirTelaPrincipal(){
         Intent intent = new Intent(MainActivity.this, Principal.class);
         startActivity(intent);
+        finish();
     }
 
     public void novoUsuario (View view){

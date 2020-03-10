@@ -47,5 +47,9 @@
         <item>Tricepes</item>
     </string-array>
 
+    <string-array name="tipoTreino">
+
+    </string-array>
+
 
 </resources>
