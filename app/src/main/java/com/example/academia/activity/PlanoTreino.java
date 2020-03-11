@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,8 +26,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class PlanoTreino extends AppCompatActivity {
 
+    private DatabaseReference reference = ConfiguracaoFirabase.getFirebase();
     private TextView email;
     private TextView sequencia;
     private TextView repeticao;
@@ -34,13 +39,22 @@ public class PlanoTreino extends AppCompatActivity {
     private PlanoDeTreino pTreino;
     private AlunoProfessor aluProfessor;
     private String identificadorUsuario;
+
     private DatabaseReference refenreciaDados;
+    private DatabaseReference refenreciaExercicio;
 
     private Spinner exercicio;
     private Spinner grupoMusculares;
 
     private Button salvar;
     private Button voltar;
+
+    private ArrayList<String> listMusculos = new ArrayList<>();
+    private ArrayList<String> listExercicio = new ArrayList<>();
+    private ArrayAdapter<CharSequence> adapter = null;
+    private ArrayAdapter<CharSequence> adapterExercicio = null;
+
+    private String grupoSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,23 +73,88 @@ public class PlanoTreino extends AppCompatActivity {
         salvar = findViewById(R.id.salvarButton);
         voltar = findViewById(R.id.voltarPrincipalButton);
 
+        pTreino = new PlanoDeTreino();
+        aluProfessor = new AlunoProfessor();
+        pTreino.setEmail( email.getText().toString() );
+        pTreino.setSequencia( sequencia.getText().toString() );
+        pTreino.setExercicio( repeticao.getText().toString() );
+        pTreino.setTipoTreino( tipoTreino.getText().toString() );
+        pTreino.setNumeroExercicio( numeroExercicio.getText().toString() );
+        pTreino.setPersonalTrainig( professorLogado() );
+        aluProfessor.setProfessor( professorLogado() );
+
+        refenreciaDados = ConfiguracaoFirabase.getFirebase().child("exercicio");
+        refenreciaDados.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren()){
+                    Log.i("Dado:", "Dado"+data.getKey());
+                    listMusculos.add(data.getKey());
+                }
+                adapter = new ArrayAdapter(PlanoTreino.this,
+                        R.layout.support_simple_spinner_dropdown_item,
+                        listMusculos);
+                grupoMusculares.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        grupoMusculares.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                grupoSelecionado = adapterView.getItemAtPosition(position).toString();
+                pTreino.setGrupoMuscularea(grupoSelecionado);
+                listExercicio.clear();
+
+                refenreciaExercicio = ConfiguracaoFirabase.getFirebase().child("exercicio").child(grupoSelecionado);
+                refenreciaExercicio.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot dado : dataSnapshot.getChildren()){
+                            listExercicio.add(dado.getKey());
+                        }
+                        adapterExercicio = new ArrayAdapter(PlanoTreino.this,
+                                R.layout.support_simple_spinner_dropdown_item,
+                                listExercicio);
+                        exercicio.setAdapter(adapterExercicio);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        exercicio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int positon, long l) {
+                Log.i("Dado:","Ecercicio: "+ adapterView.getItemAtPosition(positon).toString());
+                pTreino.setExercicio(adapterView.getItemAtPosition(positon).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
 
 
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                pTreino = new PlanoDeTreino();
-                aluProfessor = new AlunoProfessor();
-                pTreino.setEmail( email.getText().toString() );
-                pTreino.setSequencia( sequencia.getText().toString() );
-                pTreino.setExercicio( repeticao.getText().toString() );
-                pTreino.setTipoTreino( tipoTreino.getText().toString() );
-                pTreino.setNumeroExercicio( numeroExercicio.getText().toString() );
-                pTreino.setPersonalTrainig( professorLogado() );
-                aluProfessor.setProfessor( professorLogado() );
-
-
                 identificadorUsuario = Codification.codificacaoData( pTreino.getEmail() );
                 aluProfessor.setAluno( identificadorUsuario );
                 refenreciaDados = ConfiguracaoFirabase.getFirebase().child("usuario").child( identificadorUsuario );
@@ -99,6 +178,7 @@ public class PlanoTreino extends AppCompatActivity {
 
             }
         });
+
 
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override

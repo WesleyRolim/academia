@@ -47,8 +47,9 @@ public class MeuTreino extends AppCompatActivity {
     private Spinner tipoDeTreino;
     // variaveis de teste
     private ArrayList<String> meusTreinos = new ArrayList<>();
-    ArrayAdapter<CharSequence> adapter= null;
+    private ArrayAdapter<CharSequence> adapter= null;
     private Button voltar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +100,7 @@ public class MeuTreino extends AppCompatActivity {
         tipoDeTreino.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int positon, long l) {
-                Log.i("Dado:","Dado do Spimmer: "+ adapterView.getItemAtPosition(positon));
+                Log.i("Dado:","Dado do Spimmer: "+ adapterView.getItemAtPosition(positon).toString());
                 CustonAdapter custonAdapter = new CustonAdapter();
                 String treinoSelecionado = adapterView.getItemAtPosition(positon).toString();
                 if (treinoSelecionado.equals("B")){
