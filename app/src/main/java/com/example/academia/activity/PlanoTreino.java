@@ -60,6 +60,8 @@ public class PlanoTreino extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plano_treino);
+        pTreino = new PlanoDeTreino();
+        aluProfessor = new AlunoProfessor();
 
         email = findViewById(R.id.emailTreinoEditText);
         sequencia = findViewById(R.id.sequenciaTreinoEditText);
@@ -72,16 +74,6 @@ public class PlanoTreino extends AppCompatActivity {
 
         salvar = findViewById(R.id.salvarButton);
         voltar = findViewById(R.id.voltarPrincipalButton);
-
-        pTreino = new PlanoDeTreino();
-        aluProfessor = new AlunoProfessor();
-        pTreino.setEmail( email.getText().toString() );
-        pTreino.setSequencia( sequencia.getText().toString() );
-        pTreino.setExercicio( repeticao.getText().toString() );
-        pTreino.setTipoTreino( tipoTreino.getText().toString() );
-        pTreino.setNumeroExercicio( numeroExercicio.getText().toString() );
-        pTreino.setPersonalTrainig( professorLogado() );
-        aluProfessor.setProfessor( professorLogado() );
 
         refenreciaDados = ConfiguracaoFirabase.getFirebase().child("exercicio");
         refenreciaDados.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -155,8 +147,17 @@ public class PlanoTreino extends AppCompatActivity {
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                pTreino.setEmail( email.getText().toString() );
+                pTreino.setSequencia( sequencia.getText().toString() );
+                pTreino.setExercicio( repeticao.getText().toString() );
+                pTreino.setTipoTreino( tipoTreino.getText().toString() );
+                pTreino.setNumeroExercicio( numeroExercicio.getText().toString() );
+                pTreino.setPersonalTrainig( professorLogado() );
                 identificadorUsuario = Codification.codificacaoData( pTreino.getEmail() );
                 aluProfessor.setAluno( identificadorUsuario );
+                aluProfessor.setProfessor( professorLogado() );
+
                 refenreciaDados = ConfiguracaoFirabase.getFirebase().child("usuario").child( identificadorUsuario );
                 refenreciaDados.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

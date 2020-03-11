@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,11 +48,13 @@ public class MeuTreino extends AppCompatActivity {
     private DatabaseReference mostraEcercicio = reference.child("treino");
     private DatabaseReference mostraTreinos = reference.child("treino");
     private Spinner tipoDeTreino;
-    // variaveis de teste
     private ArrayList<String> meusTreinos = new ArrayList<>();
     private ArrayList<String> meusQtdExercicios = new ArrayList<>();
     private ArrayAdapter<CharSequence> adapter= null;
     private Button voltar;
+
+    // variaveis de teste
+    int cont = 0;
 
 
     @Override
@@ -86,6 +89,8 @@ public class MeuTreino extends AppCompatActivity {
                                 meusTreinos);
                         tipoDeTreino.setAdapter(adapter);
 
+
+
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -102,18 +107,16 @@ public class MeuTreino extends AppCompatActivity {
         tipoDeTreino.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int positon, long l) {
-                Log.i("Dado:","Dado do Spimmer: "+ adapterView.getItemAtPosition(positon).toString());
+                Log.i("Dado:","Dado do Spinner: "+ adapterView.getItemAtPosition(positon).toString());
                 CustonAdapter custonAdapter = new CustonAdapter();
                 String treinoSelecionado = adapterView.getItemAtPosition(positon).toString();
 
-                treino.child(treinoSelecionado);
-                treino.addListenerForSingleValueEvent(new ValueEventListener() {
+                mostraEcercicio = mostraEcercicio.child(professorDoAluno).child(usuarioLogado()).child(treinoSelecionado);
+                mostraEcercicio.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot data : dataSnapshot.getChildren()){
-//                            meusQtdExercicios.add(dataSnapshot.getKey());
-                            Log.i("Exer","Exercicio: "+dataSnapshot.getKey());
-                        }
+                        Log.i("Exer",""+ dataSnapshot.getValue());
+
                     }
 
                     @Override
@@ -133,11 +136,6 @@ public class MeuTreino extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
 
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
