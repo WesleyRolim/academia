@@ -44,9 +44,12 @@ public class MeuTreino extends AppCompatActivity {
     private ListView listaExercicios;
     private String professorDoAluno = "";
     private DatabaseReference treino = reference.child("treino");
+    private DatabaseReference mostraEcercicio = reference.child("treino");
+    private DatabaseReference mostraTreinos = reference.child("treino");
     private Spinner tipoDeTreino;
     // variaveis de teste
     private ArrayList<String> meusTreinos = new ArrayList<>();
+    private ArrayList<String> meusQtdExercicios = new ArrayList<>();
     private ArrayAdapter<CharSequence> adapter= null;
     private Button voltar;
 
@@ -96,18 +99,33 @@ public class MeuTreino extends AppCompatActivity {
             }
         });
 
-
         tipoDeTreino.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int positon, long l) {
                 Log.i("Dado:","Dado do Spimmer: "+ adapterView.getItemAtPosition(positon).toString());
                 CustonAdapter custonAdapter = new CustonAdapter();
                 String treinoSelecionado = adapterView.getItemAtPosition(positon).toString();
-                if (treinoSelecionado.equals("B")){
-                    listaExercicios.setAdapter(custonAdapter);
-                }else{
-                    listaExercicios.setAdapter(null);
-                }
+
+                treino.child(treinoSelecionado);
+                treino.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot data : dataSnapshot.getChildren()){
+//                            meusQtdExercicios.add(dataSnapshot.getKey());
+                            Log.i("Exer","Exercicio: "+dataSnapshot.getKey());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+//                if (treinoSelecionado.equals("B")){
+//                    listaExercicios.setAdapter(custonAdapter);
+//                }else{
+//                    listaExercicios.setAdapter(null);
+//                }
             }
 
             @Override
@@ -115,6 +133,11 @@ public class MeuTreino extends AppCompatActivity {
 
             }
         });
+
+
+
+
+
 
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
