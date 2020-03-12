@@ -117,9 +117,7 @@ public class MeuTreino extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot data : dataSnapshot.getChildren()){
                             Log.i("Exer","Dados"+data.getValue());
-
                         }
-
                     }
 
                     @Override
@@ -127,11 +125,6 @@ public class MeuTreino extends AppCompatActivity {
 
                     }
                 });
-//                if (treinoSelecionado.equals("B")){
-//                    listaExercicios.setAdapter(custonAdapter);
-//                }else{
-//                    listaExercicios.setAdapter(null);
-//                }
             }
 
             @Override
