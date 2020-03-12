@@ -150,7 +150,7 @@ public class PlanoTreino extends AppCompatActivity {
 
                 pTreino.setEmail( email.getText().toString() );
                 pTreino.setSequencia( sequencia.getText().toString() );
-                pTreino.setExercicio( repeticao.getText().toString() );
+                pTreino.setRepeticao( repeticao.getText().toString() );
                 pTreino.setTipoTreino( tipoTreino.getText().toString() );
                 pTreino.setNumeroExercicio( numeroExercicio.getText().toString() );
                 pTreino.setPersonalTrainig( professorLogado() );
