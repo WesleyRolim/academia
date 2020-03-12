@@ -112,10 +112,13 @@ public class MeuTreino extends AppCompatActivity {
                 String treinoSelecionado = adapterView.getItemAtPosition(positon).toString();
 
                 mostraEcercicio = mostraEcercicio.child(professorDoAluno).child(usuarioLogado()).child(treinoSelecionado);
-                mostraEcercicio.addValueEventListener(new ValueEventListener() {
+                mostraEcercicio.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Log.i("Exer",""+ dataSnapshot.getValue());
+                        for (DataSnapshot data : dataSnapshot.getChildren()){
+                            Log.i("Exer","Dados"+data.getValue());
+
+                        }
 
                     }
 
