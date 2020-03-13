@@ -32,6 +32,10 @@ import java.util.ArrayList;
 
 public class MeuTreino extends AppCompatActivity {
 
+    private ArrayList<String> exercicioList;
+    private ArrayList<String> sequenciaList;
+    private ArrayList<String> repeticaoList;
+
     String [] exercicio = {"Puxa C", "Puxa F", "Remada B", "Remada Curvada",
             "Bicepes 1", "Bicepes 2", "Bicepes 3", "Tricepes Supnado", "Tricepes Corda", "Tricepes Frences", "Tricepes Testa"};
     String [] sequencia = {"3", "4", "4", "3", "4", "4", "3", "4", "3", "4", "4"};
@@ -66,7 +70,7 @@ public class MeuTreino extends AppCompatActivity {
         voltar = findViewById(R.id.btnVoltar);
 
 
-        pTreino = new PlanoDeTreino();
+
         // Pegar o professor do aluno -- Cria um metodo sepadado depois, para deixar melhor intendivel
         professor = ConfiguracaoFirabase.getFirebase().child("relacao").child( usuarioLogado() );
         professor.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -116,22 +120,20 @@ public class MeuTreino extends AppCompatActivity {
                     @Override
                     public void onDataChange( DataSnapshot dataSnapshot) {
                         for (DataSnapshot data : dataSnapshot.getChildren()){
-                            Log.i("Exer","Dados"+dataSnapshot.getValue());
+                            pTreino = data.getValue(PlanoDeTreino.class);
+                            //Log.i("Exer","Dados "+pTreino.getExercicio());
+                            exercicioList.add(pTreino.getExercicio());
+                            sequenciaList.add(pTreino.getSequencia());
+                            repeticaoList.add(pTreino.getRepeticao());
                         }
-
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
