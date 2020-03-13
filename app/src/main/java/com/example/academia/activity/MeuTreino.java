@@ -45,7 +45,7 @@ public class MeuTreino extends AppCompatActivity {
     private ListView listaExercicios;
     private String professorDoAluno = "";
     private DatabaseReference treino = reference.child("treino");
-    private DatabaseReference mostraEcercicio = reference.child("treino");
+    private DatabaseReference mostraEcercicio;// = reference.child("treino");
     private DatabaseReference mostraTreinos = reference.child("treino");
     private Spinner tipoDeTreino;
     private ArrayList<String> meusTreinos = new ArrayList<>();
@@ -110,14 +110,15 @@ public class MeuTreino extends AppCompatActivity {
                 Log.i("Dado:","Dado do Spinner: "+ adapterView.getItemAtPosition(positon).toString());
                 CustonAdapter custonAdapter = new CustonAdapter();
                 String treinoSelecionado = adapterView.getItemAtPosition(positon).toString();
-
-                mostraEcercicio = mostraEcercicio.child(professorDoAluno).child(usuarioLogado()).child(treinoSelecionado);
+                mostraEcercicio = ConfiguracaoFirabase.getFirebase();
+                mostraEcercicio = mostraEcercicio.child("treino").child(professorDoAluno).child(usuarioLogado()).child(treinoSelecionado);
                 mostraEcercicio.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    public void onDataChange( DataSnapshot dataSnapshot) {
                         for (DataSnapshot data : dataSnapshot.getChildren()){
-                            Log.i("Exer","Dados"+data.getValue());
+                            Log.i("Exer","Dados"+dataSnapshot.getValue());
                         }
+
                     }
 
                     @Override
@@ -125,6 +126,7 @@ public class MeuTreino extends AppCompatActivity {
 
                     }
                 });
+
             }
 
             @Override
