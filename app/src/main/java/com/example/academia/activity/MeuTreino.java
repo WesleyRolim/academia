@@ -32,9 +32,9 @@ import java.util.ArrayList;
 
 public class MeuTreino extends AppCompatActivity {
 
-    private ArrayList<String> exercicioList;
-    private ArrayList<String> sequenciaList;
-    private ArrayList<String> repeticaoList;
+    private ArrayList<String> exercicioList = new ArrayList<>();
+    private ArrayList<String> sequenciaList = new ArrayList<>();
+    private ArrayList<String> repeticaoList = new ArrayList<>();
 
     String [] exercicio = {"Puxa C", "Puxa F", "Remada B", "Remada Curvada",
             "Bicepes 1", "Bicepes 2", "Bicepes 3", "Tricepes Supnado", "Tricepes Corda", "Tricepes Frences", "Tricepes Testa"};
@@ -56,11 +56,9 @@ public class MeuTreino extends AppCompatActivity {
     private ArrayList<String> meusQtdExercicios = new ArrayList<>();
     private ArrayAdapter<CharSequence> adapter= null;
     private Button voltar;
+    int contExercicio = 0;
 
     // variaveis de teste
-    int cont = 0;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +66,6 @@ public class MeuTreino extends AppCompatActivity {
         tipoDeTreino = findViewById(R.id.treinoSpinner);
         listaExercicios = findViewById(R.id.listaTreino);
         voltar = findViewById(R.id.btnVoltar);
-
-
 
         // Pegar o professor do aluno -- Cria um metodo sepadado depois, para deixar melhor intendivel
         professor = ConfiguracaoFirabase.getFirebase().child("relacao").child( usuarioLogado() );
@@ -92,9 +88,6 @@ public class MeuTreino extends AppCompatActivity {
                                 android.R.layout.simple_list_item_1,
                                 meusTreinos);
                         tipoDeTreino.setAdapter(adapter);
-
-
-
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -112,7 +105,6 @@ public class MeuTreino extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int positon, long l) {
                 Log.i("Dado:","Dado do Spinner: "+ adapterView.getItemAtPosition(positon).toString());
-                CustonAdapter custonAdapter = new CustonAdapter();
                 String treinoSelecionado = adapterView.getItemAtPosition(positon).toString();
                 mostraEcercicio = ConfiguracaoFirabase.getFirebase();
                 mostraEcercicio = mostraEcercicio.child("treino").child(professorDoAluno).child(usuarioLogado()).child(treinoSelecionado);
@@ -120,12 +112,14 @@ public class MeuTreino extends AppCompatActivity {
                     @Override
                     public void onDataChange( DataSnapshot dataSnapshot) {
                         for (DataSnapshot data : dataSnapshot.getChildren()){
-                            pTreino = data.getValue(PlanoDeTreino.class);
+                            PlanoDeTreino  pTreino = data.getValue(PlanoDeTreino.class);
                             //Log.i("Exer","Dados "+pTreino.getExercicio());
                             exercicioList.add(pTreino.getExercicio());
-                            sequenciaList.add(pTreino.getSequencia());
                             repeticaoList.add(pTreino.getRepeticao());
+                            sequenciaList.add(pTreino.getSequencia());
                         }
+                        CustonAdapter custonAdapter = new CustonAdapter();
+                        listaExercicios.setAdapter(custonAdapter);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -172,9 +166,10 @@ public class MeuTreino extends AppCompatActivity {
             TextView sequenciaText = view.findViewById(R.id.sequenciaTextView);
             TextView repeticaoText = view.findViewById(R.id.repeticaoTextView);
 
-            exercicioText.setText(exercicio[position]);
-            sequenciaText.setText(sequencia[position]);
-            repeticaoText.setText(repeticao[position]);
+            exercicioText.setText(exercicioList.get(contExercicio));
+            sequenciaText.setText(sequenciaList.get(contExercicio));
+            repeticaoText.setText(repeticaoList.get(contExercicio));
+            contExercicio ++;
             return view;
         }
     }
