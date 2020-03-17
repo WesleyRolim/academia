@@ -56,7 +56,6 @@ public class MeusDados extends AppCompatActivity {
                 telefone.setText(user.getTelefone());
                 email.setText(user.getEmail());
                 cpf.setText(user.getCpf());
-
             }
 
             @Override
@@ -76,6 +75,7 @@ public class MeusDados extends AppCompatActivity {
     public void voltar(){
         Intent intent = new Intent(MeusDados.this, Principal.class);
         startActivity(intent);
+        finish();
     }
 
     public String usuarioLogado(){

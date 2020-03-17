@@ -19,8 +19,10 @@ import android.widget.TextView;
 
 import com.example.academia.R;
 import com.example.academia.config.ConfiguracaoFirabase;
+import com.example.academia.helper.ListaDeExercicios;
 import com.example.academia.helper.Preferencias;
 import com.example.academia.model.AlunoProfessor;
+import com.example.academia.model.ListaTreino;
 import com.example.academia.model.PlanoDeTreino;
 import com.example.academia.model.Usuario;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +34,7 @@ import java.util.ArrayList;
 
 public class MeuTreino extends AppCompatActivity {
 
-    private ArrayList<String> exercicioList = new ArrayList<>();
+    private ArrayList<ListaTreino> exercicioList = new ArrayList<>();
     private ArrayList<String> sequenciaList = new ArrayList<>();
     private ArrayList<String> repeticaoList = new ArrayList<>();
 
@@ -112,19 +114,20 @@ public class MeuTreino extends AppCompatActivity {
                     @Override
                     public void onDataChange( DataSnapshot dataSnapshot) {
                         for (DataSnapshot data : dataSnapshot.getChildren()){
-                            PlanoDeTreino  pTreino = data.getValue(PlanoDeTreino.class);
-                            //Log.i("Exer","Dados "+pTreino.getExercicio());
-                            exercicioList.add(pTreino.getExercicio());
-                            repeticaoList.add(pTreino.getRepeticao());
-                            sequenciaList.add(pTreino.getSequencia());
+                            PlanoDeTreino listaTreino = data.getValue(PlanoDeTreino.class);
+                            addExercicio(listaTreino.getExercicio(),
+                                    listaTreino.getSequencia(),
+                                    listaTreino.getRepeticao());
                         }
-                        CustonAdapter custonAdapter = new CustonAdapter();
-                        listaExercicios.setAdapter(custonAdapter);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
+                ArrayAdapter adapter = new ListaDeExercicios(MeuTreino.this, exercicioList);
+                listaExercicios.setAdapter(adapter);
+                exercicioList.clear();
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -140,40 +143,6 @@ public class MeuTreino extends AppCompatActivity {
 
     }
 
-    // Put data inside of ListView
-    class CustonAdapter extends BaseAdapter{
-        @Override
-        public int getCount() {
-             return exercicio.length;
-        }
-
-        @Override
-
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View view = getLayoutInflater().inflate(R.layout.custon_list_exercicios, null);
-
-            TextView exercicioText = view.findViewById(R.id.exercicioTextView);
-            TextView sequenciaText = view.findViewById(R.id.sequenciaTextView);
-            TextView repeticaoText = view.findViewById(R.id.repeticaoTextView);
-
-            exercicioText.setText(exercicioList.get(contExercicio));
-            sequenciaText.setText(sequenciaList.get(contExercicio));
-            repeticaoText.setText(repeticaoList.get(contExercicio));
-            contExercicio ++;
-            return view;
-        }
-    }
-
     public String usuarioLogado(){
         Preferencias preferencias = new Preferencias(MeuTreino.this);
         return preferencias.getIdentificador();
@@ -184,5 +153,46 @@ public class MeuTreino extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    private void addExercicio(String exercicio, String sequencia, String repeticao){
+        ListaTreino lt = new ListaTreino (exercicio, sequencia, repeticao);
+        exercicioList.add(lt);
+    }
+
+
+    // Put data inside of ListView
+//    class CustonAdapter extends BaseAdapter{
+//        @Override
+//        public int getCount() {
+//            return exercicio.length;
+//        }
+//
+//        @Override
+//
+//        public Object getItem(int position) {
+//            return null;
+//        }
+//
+//        @Override
+//        public long getItemId(int position) {
+//            return 0;
+//        }
+//
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            View view = getLayoutInflater().inflate(R.layout.custon_list_exercicios, null);
+//
+//            TextView exercicioText = view.findViewById(R.id.exercicioTextView);
+//            TextView sequenciaText = view.findViewById(R.id.sequenciaTextView);
+//            TextView repeticaoText = view.findViewById(R.id.repeticaoTextView);
+//
+//            exercicioText.setText(exercicioList.get(contExercicio));
+//            sequenciaText.setText(sequenciaList.get(contExercicio));
+//            repeticaoText.setText(repeticaoList.get(contExercicio));
+//            contExercicio ++;
+//            return view;
+//        }
+//    }
+
 
 }
