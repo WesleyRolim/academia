@@ -2,6 +2,7 @@ package com.example.academia.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +22,7 @@ public class Exercicios extends AppCompatActivity {
     private Spinner musculos;
     private TextView exercicio;
     private Button cadastrarExercicio;
+    private Button voltar;
     private Execicios execicios;
     private String codificationData;
 
@@ -32,6 +34,7 @@ public class Exercicios extends AppCompatActivity {
         musculos = findViewById(R.id.gupoMuscularesSpinner);
         exercicio = findViewById(R.id.exercicioEditText);
         cadastrarExercicio = findViewById(R.id.cadastrarExercicioButton);
+        voltar = findViewById(R.id.voltarButton);
         execicios = new Execicios();
 
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -55,6 +58,15 @@ public class Exercicios extends AppCompatActivity {
             public void onClick(View view) {
                 execicios.setExercicio( exercicio.getText().toString() );
                 cadastrarExercicio();
+            }
+        });
+
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Exercicios.this, Principal.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

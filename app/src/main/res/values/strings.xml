@@ -33,6 +33,11 @@
     <string name="salvar">Salvar</string>
     <string name="tipoExercicio">Tipo de Treino:</string>
     <string name="numeroTreino">Número do Treino:</string>
+    <string name="meuTreino">Meu Treino</string>
+    <string name="treino">Treino:</string>
+    <string name="nada"></string>
+    <string name="meusDados">Meus Dados</string>
+    <string name="editar">Editar</string>
 
     <string-array name="gurpoMusculos">
         <item>Peito</item>
@@ -40,6 +45,10 @@
         <item>Inferior</item>
         <item>Bicepes</item>
         <item>Tricepes</item>
+    </string-array>
+
+    <string-array name="tipoTreino">
+
     </string-array>
 
 

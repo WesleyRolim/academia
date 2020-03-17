@@ -50,7 +50,6 @@ public class CadastroUsuario extends AppCompatActivity {
         cpf = findViewById(R.id.cpfEditText);
         email = findViewById(R.id.emailTreinoEditText);
         telefone = findViewById(R.id.telefoneEditText);
-        objetivo = findViewById(R.id.objetivoEditText);
         voltar = findViewById(R.id.voltarPrincipalButton);
         cadastrar = findViewById(R.id.cadastrarButton);
         criarSenha = findViewById(R.id.senhaEditText);
@@ -69,10 +68,16 @@ public class CadastroUsuario extends AppCompatActivity {
                     user.setCpf( cpf.getText().toString() );
                     user.setEmail( email.getText().toString() );
                     user.setTelefone(telefone.getText().toString() );
-                    user.setObjetivo( objetivo.getText().toString() );
                     user.setDataNascimento( dataNascimento.getText().toString() );
                     user.setIdade( idade.getText().toString() );
                     cadastrarUsuario();
+            }
+        });
+
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirTelaLogin();
             }
         });
     }

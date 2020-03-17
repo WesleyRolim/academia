@@ -12,7 +12,6 @@ public class Usuario {
     private String dataNascimento;
     private String cpf;
     private String telefone;
-    private String objetivo;
     private String senha;
 
     public Usuario(){
@@ -78,14 +77,6 @@ public class Usuario {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public String getObjetivo() {
-        return objetivo;
-    }
-
-    public void setObjetivo(String objetivo) {
-        this.objetivo = objetivo;
     }
 
     public String getSenha() {

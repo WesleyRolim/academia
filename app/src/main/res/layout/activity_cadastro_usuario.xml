@@ -134,52 +134,27 @@
         android:id="@+id/voltarPrincipalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginLeft="92dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/voltar"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/cadastrarButton"
         app:layout_constraintTop_toBottomOf="@+id/confirmaSenhaEditText" />
 
     <Button
         android:id="@+id/cadastrarButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="@string/cadastrae"
-        app:layout_constraintStart_toEndOf="@+id/voltarPrincipalButton"
-        app:layout_constraintTop_toBottomOf="@+id/confirmaSenhaEditText" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/objetivo"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <EditText
-        android:id="@+id/objetivoEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/cpfEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmaSenhaEditText" />
 
     <TextView
         android:id="@+id/textView11"
@@ -192,7 +167,7 @@
         android:textColor="@color/textos"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView12"
@@ -243,7 +218,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/objetivoEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/cpfEditText" />
 
     <EditText
         android:id="@+id/confirmaSenhaEditText"

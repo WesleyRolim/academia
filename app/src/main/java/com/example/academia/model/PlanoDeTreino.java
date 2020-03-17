@@ -23,12 +23,27 @@ public class PlanoDeTreino {
 
     public void salvar(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference
-                .child("treino").child( getPersonalTrainig() )
-                .child( getEmail() )
-                .child( getTipoTreino() )
-                .child( getNumeroExercicio())
-                .setValue( this );
+        databaseReference.
+                child("treino").child( getPersonalTrainig() ).
+                child( getEmail() ).
+                child( getTipoTreino() ).
+                child( getNumeroExercicio()).
+                setValue( this );
+    }
+
+    public void salvarExercicio(){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.
+                child("exercio").
+                child(getEmail()).
+                child(getNumeroExercicio()).
+                setValue(getTipoTreino());
+    }
+
+    public void salvarTreino(){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.
+                child("tipoTreino").child(getTipoTreino()).setValue(getEmail());
     }
 
     @Exclude
