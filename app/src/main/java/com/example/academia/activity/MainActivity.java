@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cpf = findViewById(R.id.cpfEditText);
+        cpf = findViewById(R.id.emailEditText);
         senha = findViewById(R.id.senhaEditText);
         entrar = findViewById(R.id.entrarButton);
 

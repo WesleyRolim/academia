@@ -47,7 +47,7 @@ public class CadastroUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_usuario);
 
         nome = findViewById(R.id.nomeEditText);
-        cpf = findViewById(R.id.cpfEditText);
+        cpf = findViewById(R.id.emailEditText);
         email = findViewById(R.id.emailTreinoEditText);
         telefone = findViewById(R.id.telefoneEditText);
         voltar = findViewById(R.id.voltarPrincipalButton);

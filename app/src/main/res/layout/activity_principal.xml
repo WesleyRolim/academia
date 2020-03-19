@@ -10,7 +10,7 @@
 
     <Button
         android:id="@+id/meuTreinoButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:scrollbarSize="4dp"
@@ -21,18 +21,19 @@
 
     <Button
         android:id="@+id/meusDadosButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:scrollbarSize="4dp"
         android:text="@string/meus_dados"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meuTreinoButton" />
+        app:layout_constraintTop_toBottomOf="@+id/fichaAlunoButton" />
 
     <Button
         android:id="@+id/trocarSenhaButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:scrollbarSize="4dp"
@@ -43,7 +44,7 @@
 
     <Button
         android:id="@+id/criarTreinoButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:scrollbarSize="4dp"
@@ -66,7 +67,7 @@
 
     <Button
         android:id="@+id/criarExercioButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:scrollbarSize="4dp"
@@ -74,5 +75,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/criarTreinoButton" />
+
+    <Button
+        android:id="@+id/fichaAlunoButton"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/fichaAluno"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meuTreinoButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
