@@ -47,6 +47,8 @@
     <string name="dataFim">Fim:</string>
     <string name="pesoGrama">Peso em Grama:</string>
     <string name="alturaCm">Altura em Centimetros:</string>
+    <string name="professor">Professor</string>
+    <string name="alunos">Alunos</string>
 
 
     <string-array name="gurpoMusculos">

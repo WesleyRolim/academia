@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.academia.R;
 import com.example.academia.config.ConfiguracaoFirabase;
 import com.example.academia.helper.Preferencias;
+import com.example.academia.model.FichaDoAluno;
 import com.example.academia.model.Usuario;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,12 +24,22 @@ public class MeusDados extends AppCompatActivity {
 
     private Button voltar;
     private DatabaseReference dados;
+    private DatabaseReference ficha;
     private TextView nome;
     private TextView dtNascimento;
     private TextView idade;
     private TextView telefone;
     private TextView email;
     private TextView cpf;
+
+    private TextView objetivo;
+    private TextView frequencia;
+    private TextView duracao;
+    private TextView descanco;
+    private TextView inicio;
+    private TextView fim;
+    private TextView peso;
+    private TextView altura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +54,21 @@ public class MeusDados extends AppCompatActivity {
         email = findViewById(R.id.emailTextView);
         cpf = findViewById(R.id.cpfTextView);
 
+        objetivo = findViewById(R.id.objetivoTextView);
+        frequencia = findViewById(R.id.frequenciaTextView);
+        duracao = findViewById(R.id.duracaoTextView);
+        descanco = findViewById(R.id.descancoTextView);
+        inicio = findViewById(R.id.dataInicioTextView);
+        fim = findViewById(R.id.dataFimTextView);
+        peso = findViewById(R.id.pesoTextView);
+        altura = findViewById(R.id.alturaTextView);
+
         dados = ConfiguracaoFirabase.getFirebase().
                 child("usuario").
                 child(usuarioLogado());
+
+        ficha = ConfiguracaoFirabase.getFirebase().
+                child("ficha").child(usuarioLogado());
 
         dados.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -63,6 +87,34 @@ public class MeusDados extends AppCompatActivity {
 
             }
         });
+
+        ficha.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                FichaDoAluno fichaDoAluno = dataSnapshot.getValue(FichaDoAluno.class);
+                if (dataSnapshot != null){
+                    objetivo.setText(fichaDoAluno.getObjetivo());
+                    frequencia.setText(fichaDoAluno.getFrequancia());
+                    duracao.setText(fichaDoAluno.getDuracao());
+                    descanco.setText(fichaDoAluno.getDescanco());
+                    inicio.setText(fichaDoAluno.getDataInicio());
+                    fim.setText(fichaDoAluno.getDataFim());
+                    peso.setText(fichaDoAluno.getPeso());
+                    altura.setText(fichaDoAluno.getAltura());
+                }else{
+                    Toast toast = Toast.makeText(MeusDados.this,
+                            "Você não tem ficha, \nPeça para seu professo criar sua ficha",Toast.LENGTH_LONG);
+                    toast.show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override

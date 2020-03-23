@@ -5,33 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/tela_principal"
-    android:scrollbarSize="4dp"
-    tools:context=".activity.Principal">
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:gravity="center"
-        android:text="@string/escolha_acao"
-        android:textColor="@color/textos"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".activity.ProfessorPrincipal">
 
     <Button
-        android:id="@+id/meuTreinoButton"
+        android:id="@+id/alunoButton"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:scrollbarSize="4dp"
-        android:text="@string/meu_treino"
+        android:text="@string/alunos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -70,6 +52,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meusDadosButton" />
 
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:text="@string/professor"
+        android:textColor="@color/textos"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/criarExercioButton"
         android:layout_width="250sp"
@@ -89,7 +88,6 @@
         android:text="@string/fichaAluno"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meuTreinoButton"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/alunoButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

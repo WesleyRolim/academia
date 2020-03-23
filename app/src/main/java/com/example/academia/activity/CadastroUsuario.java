@@ -70,6 +70,7 @@ public class CadastroUsuario extends AppCompatActivity {
                     user.setTelefone(telefone.getText().toString() );
                     user.setDataNascimento( dataNascimento.getText().toString() );
                     user.setIdade( idade.getText().toString() );
+                    user.setTipo("aluno");
                     cadastrarUsuario();
             }
         });

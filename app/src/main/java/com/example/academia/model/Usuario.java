@@ -13,6 +13,7 @@ public class Usuario {
     private String cpf;
     private String telefone;
     private String senha;
+    private String tipo;
 
     public Usuario(){
 
@@ -85,5 +86,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

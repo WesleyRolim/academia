@@ -141,9 +141,6 @@ public class PlanoTreino extends AppCompatActivity {
             }
         });
 
-
-
-
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

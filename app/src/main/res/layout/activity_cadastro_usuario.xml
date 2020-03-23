@@ -8,7 +8,7 @@
     tools:context=".activity.CadastroUsuario">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/alturaTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -35,7 +35,7 @@
         android:textColor="@color/textos"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/alturaTextView" />
 
     <EditText
         android:id="@+id/nomeEditText"
@@ -50,7 +50,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/alturaTextView" />
 
     <TextView
         android:id="@+id/textView8"

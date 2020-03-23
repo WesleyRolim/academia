@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView senha;
     private Usuario user;
     private FirebaseAuth logar;
+    private String tipo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-
                     Preferencias preferencias = new Preferencias(MainActivity.this);
                     String idUserLogado = Codification.codificacaoData(user.getEmail());
                     preferencias.salvarDados(idUserLogado);
@@ -80,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void abrirTelaPrincipal(){
+        Intent intent = new Intent(MainActivity.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void abrirTelaPrincipalProfessor(){
         Intent intent = new Intent(MainActivity.this, Principal.class);
         startActivity(intent);
         finish();
