@@ -47,7 +47,7 @@ public class CadastroUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_usuario);
 
         nome = findViewById(R.id.nomeEditText);
-        cpf = findViewById(R.id.emailEditText);
+        cpf = findViewById(R.id.loginEditText);
         email = findViewById(R.id.emailTreinoEditText);
         telefone = findViewById(R.id.telefoneEditText);
         voltar = findViewById(R.id.voltarPrincipalButton);
@@ -95,8 +95,8 @@ public class CadastroUsuario extends AppCompatActivity {
                     Toast cadastrado = Toast.makeText(getApplicationContext(), "Usuário cadastrado", Toast.LENGTH_SHORT);
                     cadastrado.show();
                     FirebaseUser usuarioFirebase = task.getResult().getUser();
-                    String idUsuário = Codification.codificacaoData( user.getEmail() );
-                    user.setId( idUsuário );
+                    String idUsuario = Codification.codificacaoData( user.getCpf() );
+                    user.setId( idUsuario );
                     user.salvar();
                     abrirTelaLogin();
 

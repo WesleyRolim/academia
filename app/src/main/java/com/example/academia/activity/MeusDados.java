@@ -91,8 +91,8 @@ public class MeusDados extends AppCompatActivity {
         ficha.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                FichaDoAluno fichaDoAluno = dataSnapshot.getValue(FichaDoAluno.class);
-                if (dataSnapshot != null){
+                if (dataSnapshot.getValue() != null){
+                    FichaDoAluno fichaDoAluno = dataSnapshot.getValue(FichaDoAluno.class);
                     objetivo.setText(fichaDoAluno.getObjetivo());
                     frequencia.setText(fichaDoAluno.getFrequancia());
                     duracao.setText(fichaDoAluno.getDuracao());

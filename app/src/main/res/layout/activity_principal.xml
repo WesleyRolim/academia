@@ -27,9 +27,13 @@
 
     <Button
         android:id="@+id/meuTreinoButton"
-        android:layout_width="250sp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
         android:scrollbarSize="4dp"
         android:text="@string/meu_treino"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,58 +42,34 @@
 
     <Button
         android:id="@+id/meusDadosButton"
-        android:layout_width="250sp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
         android:scrollbarSize="4dp"
         android:text="@string/meus_dados"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fichaAlunoButton" />
+        app:layout_constraintTop_toBottomOf="@+id/meuTreinoButton" />
 
     <Button
         android:id="@+id/trocarSenhaButton"
-        android:layout_width="250sp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
         android:scrollbarSize="4dp"
         android:text="@string/trocar_senha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/criarExercioButton" />
-
-    <Button
-        android:id="@+id/criarTreinoButton"
-        android:layout_width="250sp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:scrollbarSize="4dp"
-        android:text="@string/criar_treino"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meusDadosButton" />
-
-    <Button
-        android:id="@+id/criarExercioButton"
-        android:layout_width="250sp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:scrollbarSize="4dp"
-        android:text="@string/criar_exercicio"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/criarTreinoButton" />
-
-    <Button
-        android:id="@+id/fichaAlunoButton"
-        android:layout_width="250sp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/fichaAluno"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meuTreinoButton"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

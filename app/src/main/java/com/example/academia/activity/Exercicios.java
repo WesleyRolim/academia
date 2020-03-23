@@ -64,7 +64,7 @@ public class Exercicios extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Exercicios.this, Principal.class);
+                Intent intent = new Intent(Exercicios.this, ProfessorPrincipal.class);
                 startActivity(intent);
                 finish();
             }

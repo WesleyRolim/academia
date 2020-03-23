@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.academia.R;
 import com.example.academia.config.ConfiguracaoFirabase;
@@ -35,13 +36,6 @@ import java.util.ArrayList;
 public class MeuTreino extends AppCompatActivity {
 
     private ArrayList<ListaTreino> exercicioList = new ArrayList<>();
-    private ArrayList<String> sequenciaList = new ArrayList<>();
-    private ArrayList<String> repeticaoList = new ArrayList<>();
-
-    String [] exercicio = {"Puxa C", "Puxa F", "Remada B", "Remada Curvada",
-            "Bicepes 1", "Bicepes 2", "Bicepes 3", "Tricepes Supnado", "Tricepes Corda", "Tricepes Frences", "Tricepes Testa"};
-    String [] sequencia = {"3", "4", "4", "3", "4", "4", "3", "4", "3", "4", "4"};
-    String [] repeticao = {"10", "8-12", "15", "10", "10", "8-10", "12-15", "8-10", "12-15", "8-10", "8"};
 
     private DatabaseReference reference = ConfiguracaoFirabase.getFirebase();
     private DatabaseReference dadosTreino;
@@ -74,28 +68,32 @@ public class MeuTreino extends AppCompatActivity {
         professor.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                AlunoProfessor alProf = dataSnapshot.getValue(AlunoProfessor.class);
-                professorDoAluno = alProf.getProfessor();
-
-                // Busca qual o trieno
-                treino = treino.child(professorDoAluno).child(usuarioLogado());
-                treino.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot dados : dataSnapshot.getChildren()){
-                            dados.getValue();
-                            meusTreinos.add(dados.getKey());
+                if(dataSnapshot.getValue() != null){
+                    AlunoProfessor alProf = dataSnapshot.getValue(AlunoProfessor.class);
+                    professorDoAluno = alProf.getProfessor();
+                    // Busca qual o trieno
+                    treino = treino.child(professorDoAluno).child(usuarioLogado());
+                    treino.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot dados : dataSnapshot.getChildren()){
+                                dados.getValue();
+                                meusTreinos.add(dados.getKey());
+                            }
+                            adapter = new ArrayAdapter(MeuTreino.this,
+                                    android.R.layout.simple_list_item_1,
+                                    meusTreinos);
+                            tipoDeTreino.setAdapter(adapter);
                         }
-                        adapter = new ArrayAdapter(MeuTreino.this,
-                                android.R.layout.simple_list_item_1,
-                                meusTreinos);
-                        tipoDeTreino.setAdapter(adapter);
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.i("KEY", "Não foi possivel obter a Key");
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Log.i("KEY", "Não foi possivel obter a Key");
+                        }
+                    });
+                }else{
+                    Toast toast = Toast.makeText(MeuTreino.this, "Você não tem um professor relacionado", Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

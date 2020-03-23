@@ -31,14 +31,14 @@
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:text="@string/email"
+        android:text="@string/user"
         android:textColor="@color/textos"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/emailEditText"
+        android:id="@+id/loginEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -48,7 +48,7 @@
         android:layout_marginRight="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="bruna.dastas73@hotmail.com"
+        android:text="444444444"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/text"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -81,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/loginEditText" />
 
     <Button
         android:id="@+id/entrarButton"

@@ -197,7 +197,7 @@ public class PlanoTreino extends AppCompatActivity {
     }
 
     public void voltar(){
-        Intent integer = new Intent(PlanoTreino.this, Principal.class);
+        Intent integer = new Intent(PlanoTreino.this, ProfessorPrincipal.class);
         startActivity(integer);
         finish();
     }

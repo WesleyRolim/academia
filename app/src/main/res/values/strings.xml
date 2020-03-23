@@ -49,6 +49,7 @@
     <string name="alturaCm">Altura em Centimetros:</string>
     <string name="professor">Professor</string>
     <string name="alunos">Alunos</string>
+    <string name="user">User</string>
 
 
     <string-array name="gurpoMusculos">

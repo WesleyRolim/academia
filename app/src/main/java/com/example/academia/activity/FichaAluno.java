@@ -37,7 +37,7 @@ public class FichaAluno extends AppCompatActivity {
         voltar = findViewById(R.id.voltarButton);
         salvar = findViewById(R.id.cadastrarButton);
 
-        email = findViewById(R.id.emailEditText);
+        email = findViewById(R.id.loginEditText);
         objetivo = findViewById(R.id.objetivoEditText);
         frequencia = findViewById(R.id.frequenciaEditText);
         descanco = findViewById(R.id.descancoEditText);
@@ -76,7 +76,7 @@ public class FichaAluno extends AppCompatActivity {
     }
 
     private void voltar (){
-        Intent intent = new Intent(FichaAluno.this, Principal.class);
+        Intent intent = new Intent(FichaAluno.this, ProfessorPrincipal.class);
         startActivity(intent);
     }
 }

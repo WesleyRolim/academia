@@ -13,10 +13,7 @@ public class Principal extends AppCompatActivity {
 
     private Button meuTreino;
     private Button meusDados;
-    private Button criarTreino;
-    private Button criarExercicio;
     private Button trocarSenha;
-    private Button fichaAluno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +22,7 @@ public class Principal extends AppCompatActivity {
 
         meuTreino = findViewById(R.id.meuTreinoButton);
         meusDados = findViewById(R.id.meusDadosButton);
-        criarTreino = findViewById(R.id.criarTreinoButton);
-        criarExercicio = findViewById(R.id.criarExercioButton);
         trocarSenha = findViewById(R.id.trocarSenhaButton);
-        fichaAluno = findViewById(R.id.fichaAlunoButton);
 
         meuTreino.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,32 +38,10 @@ public class Principal extends AppCompatActivity {
             }
         });
 
-        criarTreino.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                criarPlanoTreino();
-
-            }
-        });
-
-        criarExercicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abrirCadExercicios();
-            }
-        });
-
         trocarSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-            }
-        });
-
-        fichaAluno.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abriTeleCriarFichaAluno();
             }
         });
     }
