@@ -92,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@+id/exercicioEditText" />
 
     <Button
-        android:id="@+id/voltarButton"
+        android:id="@+id/voltarFicha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="@string/nome"
         android:textColor="@color/textos"
         android:textSize="18sp"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="@string/dataNascimento"
         android:textColor="@color/textos"
         android:textSize="18sp"
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="@string/idade"
         android:textColor="@color/textos"
         android:textSize="18sp"
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="@string/email"
         android:textColor="@color/textos"
         android:textSize="18sp"
@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="@string/cpf"
         android:textColor="@color/textos"
         android:textSize="18sp"
@@ -203,231 +203,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="@string/editar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alturaTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/cpfTextView" />
 
-    <TextView
-        android:id="@+id/textView48"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/objetivo"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView40" />
-
-    <TextView
-        android:id="@+id/textView49"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/frequencia"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView48" />
-
-    <TextView
-        android:id="@+id/textView50"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/descanco"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView51" />
-
-    <TextView
-        android:id="@+id/textView51"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/duracao"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView49" />
-
-    <TextView
-        android:id="@+id/textView53"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/dataInicio"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView50" />
-
-    <TextView
-        android:id="@+id/textView54"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
-        android:layout_marginLeft="148dp"
-        android:text="@string/dataFim"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/textView53"
-        app:layout_constraintTop_toTopOf="@+id/textView53" />
-
-    <TextView
-        android:id="@+id/textView52"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/pesoGrama"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView53" />
-
-    <TextView
-        android:id="@+id/textView55"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/alturaCm"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView52" />
-
-    <TextView
-        android:id="@+id/alturaTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/nada"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView55"
-        app:layout_constraintTop_toTopOf="@+id/textView55" />
-
-    <TextView
-        android:id="@+id/pesoTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/nada"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView52"
-        app:layout_constraintTop_toTopOf="@+id/textView52" />
-
-    <TextView
-        android:id="@+id/objetivoTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/nada"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView48"
-        app:layout_constraintTop_toTopOf="@+id/textView48" />
-
-    <TextView
-        android:id="@+id/dataFimTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/nada"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView54"
-        app:layout_constraintTop_toTopOf="@+id/textView54" />
-
-    <TextView
-        android:id="@+id/dataInicioTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/nada"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView54"
-        app:layout_constraintStart_toEndOf="@+id/textView53"
-        app:layout_constraintTop_toTopOf="@+id/textView53" />
-
-    <TextView
-        android:id="@+id/descancoTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/nada"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView50"
-        app:layout_constraintTop_toTopOf="@+id/textView50" />
-
-    <TextView
-        android:id="@+id/duracaoTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/nada"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView51"
-        app:layout_constraintTop_toTopOf="@+id/textView51" />
-
-    <TextView
-        android:id="@+id/frequenciaTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/nada"
-        android:textColor="@color/textos"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView49"
-        app:layout_constraintTop_toTopOf="@+id/textView49" />
 </androidx.constraintlayout.widget.ConstraintLayout>

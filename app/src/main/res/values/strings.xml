@@ -50,6 +50,7 @@
     <string name="professor">Professor</string>
     <string name="alunos">Alunos</string>
     <string name="user">User</string>
+    <string name="minhaFicha">Minha Ficha</string>
 
 
     <string-array name="gurpoMusculos">

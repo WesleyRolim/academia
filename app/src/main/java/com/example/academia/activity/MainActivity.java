@@ -67,13 +67,15 @@ public class MainActivity extends AppCompatActivity {
                 if (dataSnapshot != null){
                         Usuario dataFirebase = dataSnapshot.getValue(Usuario.class);
                         if (dataFirebase.getSenha().equals(user.getSenha())){
-                            Log.i("Tipo",dataFirebase.getTipo());
                             if (dataFirebase.getTipo().equals("aluno")){
                                 Preferencias preferencias = new Preferencias(MainActivity.this);
                                 String idUserLogado = Codification.codificacaoData(user.getCpf());
                                 preferencias.salvarDados(idUserLogado);
                                 abrirTelaPrincipal();
                             }else {
+                                Preferencias preferencias = new Preferencias(MainActivity.this);
+                                String idUserLogado = Codification.codificacaoData(user.getCpf());
+                                preferencias.salvarDados(idUserLogado);
                                 abrirTelaPrincipalProfessor();
                             }
                             Toast toast = Toast.makeText(MainActivity.this, "Entrou", Toast.LENGTH_SHORT);

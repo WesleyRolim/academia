@@ -34,7 +34,7 @@ public class FichaAluno extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ficha_aluno);
 
-        voltar = findViewById(R.id.voltarButton);
+        voltar = findViewById(R.id.voltarFicha);
         salvar = findViewById(R.id.cadastrarButton);
 
         email = findViewById(R.id.loginEditText);

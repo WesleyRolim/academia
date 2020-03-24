@@ -13,6 +13,7 @@ public class Principal extends AppCompatActivity {
 
     private Button meuTreino;
     private Button meusDados;
+    private Button minhaFicha;
     private Button trocarSenha;
 
     @Override
@@ -23,6 +24,7 @@ public class Principal extends AppCompatActivity {
         meuTreino = findViewById(R.id.meuTreinoButton);
         meusDados = findViewById(R.id.meusDadosButton);
         trocarSenha = findViewById(R.id.trocarSenhaButton);
+        minhaFicha = findViewById(R.id.minhaFichaButton);
 
         meuTreino.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +40,13 @@ public class Principal extends AppCompatActivity {
             }
         });
 
+        minhaFicha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirMinhaFicha();
+            }
+        });
+
         trocarSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,10 +58,20 @@ public class Principal extends AppCompatActivity {
     public void abrirMeusTreinos(){
         Intent intent = new Intent(Principal.this, MeuTreino.class);
         startActivity(intent);
+        finish();
     }
 
     public void abriTelaMeusDados(){
         Intent intent = new Intent(Principal.this, MeusDados.class);
         startActivity(intent);
+        finish();
     }
+
+    public void abrirMinhaFicha(){
+        Intent intent = new Intent(Principal.this, MinhaFicha.class);
+        startActivity(intent);
+        finish();
+    }
+
+
 }

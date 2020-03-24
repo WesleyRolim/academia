@@ -10,10 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.academia.R;
-import com.example.academia.helper.Codification;
 import com.example.academia.model.Execicios;
 
 
@@ -34,7 +32,7 @@ public class Exercicios extends AppCompatActivity {
         musculos = findViewById(R.id.gupoMuscularesSpinner);
         exercicio = findViewById(R.id.exercicioEditText);
         cadastrarExercicio = findViewById(R.id.cadastrarExercicioButton);
-        voltar = findViewById(R.id.voltarButton);
+        voltar = findViewById(R.id.voltarFicha);
         execicios = new Execicios();
 
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
