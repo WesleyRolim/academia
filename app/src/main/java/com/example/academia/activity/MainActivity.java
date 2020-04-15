@@ -52,10 +52,17 @@ public class MainActivity extends AppCompatActivity {
                  user.setCpf( login.getText().toString());
                  user.setSenha( senha.getText().toString());
 
-                dados = ConfiguracaoFirabase.getFirebase().
-                        child("usuario").
-                        child(Codification.codificacaoData(user.getCpf()));
-                 validarLoginCPF();
+                 if (user.getCpf().isEmpty() || user.getSenha().isEmpty()){
+                     Toast toast = Toast.makeText(MainActivity.this, "Preecha correamente todos os campos acima", Toast.LENGTH_SHORT);
+                     toast.show();
+                 }else{
+                     dados = ConfiguracaoFirabase.getFirebase().
+                             child("usuario").
+                             child(Codification.codificacaoData(user.getCpf()));
+                     validarLoginCPF();
+                 }
+
+
             }
         });
     }
