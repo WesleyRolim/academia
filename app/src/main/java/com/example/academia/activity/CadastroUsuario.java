@@ -29,7 +29,6 @@ public class CadastroUsuario extends AppCompatActivity {
     private TextView cpf;
     private TextView email;
     private TextView telefone;
-    private TextView objetivo;
     private TextView criarSenha;
     private TextView confimarSenha;
     private TextView idade;
@@ -66,12 +65,26 @@ public class CadastroUsuario extends AppCompatActivity {
                     user.setSenha( criarSenha.getText().toString());
                     user.setNome( nome.getText().toString() );
                     user.setCpf( cpf.getText().toString() );
-                    user.setEmail( email.getText().toString() );
                     user.setTelefone(telefone.getText().toString() );
                     user.setDataNascimento( dataNascimento.getText().toString() );
                     user.setIdade( idade.getText().toString() );
                     user.setTipo("aluno");
-                    cadastrarUsuario();
+                if (nome.getText().toString().isEmpty() || cpf.getText().toString().isEmpty() || email.getText().toString().isEmpty() ||
+                        telefone.getText().toString().isEmpty() || criarSenha.getText().toString().isEmpty() ||
+                        confimarSenha.getText().toString().isEmpty() || idade.getText().toString().isEmpty() ||
+                        dataNascimento.getText().toString().isEmpty()){
+                    Toast confimarSenhaVazio = Toast.makeText(getApplicationContext(), "Preecha todos os campos", Toast.LENGTH_SHORT);
+                    confimarSenhaVazio.show();
+                }else{
+                    if(criarSenha.getText().toString().equals(confimarSenha.getText().toString())){
+                        Toast senhaIdenticas = Toast.makeText(getApplicationContext(), "As senhas são identicas", Toast.LENGTH_SHORT);
+                        senhaIdenticas.show();
+                        //cadastrarUsuario();
+                    }else{
+                        Toast senhaIdenticas = Toast.makeText(getApplicationContext(), "As senhas são não identicas", Toast.LENGTH_SHORT);
+                        senhaIdenticas.show();
+                    }
+                }
             }
         });
 
@@ -81,6 +94,16 @@ public class CadastroUsuario extends AppCompatActivity {
                 abrirTelaLogin();
             }
         });
+    }
+
+    private boolean validarPreenchimento(){
+        user = new Usuario();
+        if(nome != null || cpf != null || email != null || telefone != null || criarSenha != null ||
+                confimarSenha != null || idade != null || dataNascimento != null ){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     private void cadastrarUsuario(){
