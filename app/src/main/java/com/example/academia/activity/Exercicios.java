@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.academia.R;
 import com.example.academia.model.Execicios;
@@ -54,8 +55,13 @@ public class Exercicios extends AppCompatActivity {
         cadastrarExercicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                execicios.setExercicio( exercicio.getText().toString() );
-                cadastrarExercicio();
+                if (camposVazios()) {
+                    execicios.setExercicio(exercicio.getText().toString());
+                    cadastrarExercicio();
+                }else{
+                    Toast camposPreenchidos = Toast.makeText(getApplicationContext(), "Preecha todos os campos", Toast.LENGTH_SHORT);
+                    camposPreenchidos.show();
+                }
             }
         });
 
@@ -71,5 +77,13 @@ public class Exercicios extends AppCompatActivity {
 
     public void cadastrarExercicio(){
         execicios.salvar();
+    }
+
+    public boolean camposVazios(){
+        if (exercicio.getText().toString().isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
     }
 }

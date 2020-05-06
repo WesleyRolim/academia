@@ -144,36 +144,39 @@ public class PlanoTreino extends AppCompatActivity {
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (camposVazios()){
+                    pTreino.setEmail( email.getText().toString() );
+                    pTreino.setSequencia( sequencia.getText().toString() );
+                    pTreino.setRepeticao( repeticao.getText().toString() );
+                    pTreino.setTipoTreino( tipoTreino.getText().toString() );
+                    pTreino.setNumeroExercicio( numeroExercicio.getText().toString() );
+                    pTreino.setPersonalTrainig( professorLogado() );
+                    identificadorUsuario = Codification.codificacaoData( pTreino.getEmail() );
+                    aluProfessor.setAluno( identificadorUsuario );
+                    aluProfessor.setProfessor( professorLogado() );
 
-                pTreino.setEmail( email.getText().toString() );
-                pTreino.setSequencia( sequencia.getText().toString() );
-                pTreino.setRepeticao( repeticao.getText().toString() );
-                pTreino.setTipoTreino( tipoTreino.getText().toString() );
-                pTreino.setNumeroExercicio( numeroExercicio.getText().toString() );
-                pTreino.setPersonalTrainig( professorLogado() );
-                identificadorUsuario = Codification.codificacaoData( pTreino.getEmail() );
-                aluProfessor.setAluno( identificadorUsuario );
-                aluProfessor.setProfessor( professorLogado() );
-
-                refenreciaDados = ConfiguracaoFirabase.getFirebase().child("usuario").child( identificadorUsuario );
-                refenreciaDados.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.getValue() != null){
-                            cadastrarTreino();
-                        }else {
-                            Toast.makeText(PlanoTreino.this,
-                                    "Usuario não tem cadastro",
-                                    Toast.LENGTH_SHORT).show();
+                    refenreciaDados = ConfiguracaoFirabase.getFirebase().child("usuario").child( identificadorUsuario );
+                    refenreciaDados.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.getValue() != null){
+                                cadastrarTreino();
+                            }else {
+                                Toast.makeText(PlanoTreino.this,
+                                        "Usuario não tem cadastro",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
-
+                        }
+                    });
+                }else{
+                    Toast camposPreenchidos = Toast.makeText(getApplicationContext(), "Preecha todos os campos", Toast.LENGTH_SHORT);
+                    camposPreenchidos.show();
+                }
             }
         });
 
@@ -194,6 +197,14 @@ public class PlanoTreino extends AppCompatActivity {
         pTreino.salvarExercicio();
         aluProfessor.salvar();
 
+    }
+    public boolean camposVazios(){
+        if(email.getText().toString().isEmpty() || sequencia.getText().toString().isEmpty() || repeticao.getText().toString().isEmpty() ||
+        tipoTreino.getText().toString().isEmpty() || numeroExercicio.getText().toString().isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public void voltar(){

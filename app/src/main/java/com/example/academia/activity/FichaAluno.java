@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.academia.R;
 import com.example.academia.helper.Codification;
@@ -50,18 +51,23 @@ public class FichaAluno extends AppCompatActivity {
         salvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                aluno = new FichaDoAluno();
-                String idUserEmail = Codification.codificacaoData(email.getText().toString());
-                aluno.setAluno(idUserEmail);
-                aluno.setObjetivo(objetivo.getText().toString());
-                aluno.setFrequancia(frequencia.getText().toString());
-                aluno.setDescanco(descanco.getText().toString());
-                aluno.setDuracao(duracao.getText().toString());
-                aluno.setDataInicio(dataInicio.getText().toString());
-                aluno.setDataFim(dataFim.getText().toString());
-                aluno.setPeso(peso.getText().toString());
-                aluno.setAltura(altura.getText().toString());
-                aluno.salvar();
+                if (validarCamposPreenchidos()) {
+                    aluno = new FichaDoAluno();
+                    String idUserEmail = Codification.codificacaoData(email.getText().toString());
+                    aluno.setAluno(idUserEmail);
+                    aluno.setObjetivo(objetivo.getText().toString());
+                    aluno.setFrequancia(frequencia.getText().toString());
+                    aluno.setDescanco(descanco.getText().toString());
+                    aluno.setDuracao(duracao.getText().toString());
+                    aluno.setDataInicio(dataInicio.getText().toString());
+                    aluno.setDataFim(dataFim.getText().toString());
+                    aluno.setPeso(peso.getText().toString());
+                    aluno.setAltura(altura.getText().toString());
+                    aluno.salvar();
+                }else{
+                    Toast camposPreenchidos = Toast.makeText(getApplicationContext(), "Preecha todos os campos", Toast.LENGTH_SHORT);
+                    camposPreenchidos.show();
+                }
             }
         });
 
@@ -73,6 +79,17 @@ public class FichaAluno extends AppCompatActivity {
                 voltar();
             }
         });
+    }
+
+    private boolean validarCamposPreenchidos(){
+        if (email.getText().toString().isEmpty() || objetivo.getText().toString().isEmpty() ||
+        frequencia.getText().toString().isEmpty() || descanco.getText().toString().isEmpty() || duracao.getText().toString().isEmpty() ||
+        dataInicio.getText().toString().isEmpty() || dataFim.getText().toString().isEmpty() || peso.getText().toString().isEmpty() ||
+        altura.getText().toString().isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     private void voltar (){

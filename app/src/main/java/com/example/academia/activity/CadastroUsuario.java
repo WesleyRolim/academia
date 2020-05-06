@@ -79,7 +79,7 @@ public class CadastroUsuario extends AppCompatActivity {
                     if(criarSenha.getText().toString().equals(confimarSenha.getText().toString())){
                         Toast senhaIdenticas = Toast.makeText(getApplicationContext(), "As senhas são identicas", Toast.LENGTH_SHORT);
                         senhaIdenticas.show();
-                        //cadastrarUsuario();
+                        cadastrarUsuario();
                     }else{
                         Toast senhaIdenticas = Toast.makeText(getApplicationContext(), "As senhas são não identicas", Toast.LENGTH_SHORT);
                         senhaIdenticas.show();
